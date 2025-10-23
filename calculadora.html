@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Calculadora de captación de agua de lluvia en Zinacantepec."> 
+  <meta name="keywords" content="agua, captación, Zinacantepec, calculadora, sostenibilidad"> 
+  <meta name="author" content="Captación de Agua Zinacantepec"> 
+
+  <title>Calculadora de Captación de Agua</title>
+  <link rel="stylesheet" href="estilos.css/cal.css">
+</head>
+
+<body>
+  <header>
+    <div class="header-top">
+      <h1>Captación de Agua Zinacantepec</h1>
+      <div class="hamburguesa" id="hamburguesa">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <nav id="menu">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="calculadora.html">Calculadora</a></li>
+        <li><a href="problema.html">Problema</a></li>
+        <li><a href="soluciones.html">Soluciones</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="calculator">
+      <h2>Calculadora de Captación de Agua de Lluvia</h2>
+
+      <label for="areaTecho">Área del Techo (m²):</label>
+      <input type="number" id="areaTecho" onchange="datosCalculadora.entradas.areaTecho = parseFloat(this.value)">
+
+      <label for="materialTecho">Material del Techo:</label>
+      <select id="materialTecho" onchange="datosCalculadora.entradas.materialTecho = this.value">
+        <option value="">Selecciona un material</option>
+        <option value="lamina">Lámina Galvanizada</option>
+        <option value="concreto">Concreto/Losa</option>
+      </select>
+
+      <label for="precipitacionLocal">Precipitación Local (mm):</label>
+      <input type="number" id="precipitacionLocal" onchange="datosCalculadora.entradas.precipitacionLocal = parseFloat(this.value)">
+
+      <label for="costoSistema">Costo del Sistema ($):</label>
+      <input type="number" id="costoSistema" placeholder="Ej. 5000">
+
+      <label for="ahorroMensual">Ahorro Mensual Estimado ($):</label>
+      <input type="number" id="ahorroMensual" placeholder="Ej. 400">
+
+      <button type="button" onclick="calcularResultados()">Calcular</button>
+
+      <h3>Resultados:</h3>
+      <p>Litros Anuales Captados: <span id="litrosAnuales">0</span> litros</p>
+      <p>Equivalente en Tinacos: <span id="equivalenteTinacos">0</span></p>
+      <p>Equivalente en Duchas: <span id="equivalenteDuchas">0</span></p>
+      <p>Equivalente en Lavadoras: <span id="equivalenteLavadoras">0</span></p>
+      <p>Ahorro Económico Anual: $<span id="ahorroEconomico">0</span></p>
+      <p id="mensajeROI">Retorno de Inversión: <span id="retornoInversion">0</span> meses</p>
+
+      <div class="grafico">
+        <h4>Visualización de Resultados</h4>
+        <div class="grafico-barra">
+          <div class="barra-externa">
+            <div class="barra-interior" id="barraLitros"></div>
+          </div>
+          <span class="etiqueta">Litros captados: <span id="litrosEtiqueta">0</span> L</span>
+        </div>
+
+        <div class="grafico-barra">
+          <div class="barra-externa">
+            <div class="barra-interior" id="barraAhorro"></div>
+          </div>
+          <span class="etiqueta">Ahorro anual: $<span id="ahorroEtiqueta">0</span></span>
+        </div>
+      </div>
+
+      <div class="compartir-container">
+        <h4>Compartir resultado:</h4>
+        <div class="redes">
+          <button class="btn-red" id="btnWhatsApp" title="Compartir en WhatsApp">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp">
+          </button>
+          <button class="btn-red" id="btnFacebook" title="Compartir en Facebook">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+          </button>
+          <button class="btn-red" id="btnInstagram" title="Compartir en Instagram">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <section class="registro-link">
+    <a href="registro.html" class="btn-registro">💧 Comparte tu sugerencia</a>
+  </section>
+
+  <button id="btnSubir" title="Volver arriba" aria-label="Volver arriba">💧</button>
+
+  <footer>
+    <p>&copy; 2025 Captación de Agua Zinacantepec | Proyecto ecológico sustentable</p>
+  </footer>
+<script>
+    window.addEventListener("scroll", () => {
+      const header = document.querySelector("header");
+      header.classList.toggle("scrolled", window.scrollY > 50);
+    });
+
+    window.onscroll = function() {
+      const btn = document.getElementById("btnSubir");
+      btn.style.display = (window.scrollY > 200) ? "flex" : "none";
+    };
+
+    document.getElementById("btnSubir").addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    const hamburguesa = document.getElementById('hamburguesa');
+    const menu = document.getElementById('menu');
+    hamburguesa.addEventListener('click', () => {
+      menu.classList.toggle('mostrar');
+      hamburguesa.classList.toggle('active');
+    });
+
+    const coeficientesMateriales = {
+      "lamina": { coeficiente: 0.9 },
+      "concreto": { coeficiente: 0.8 }
+    };
+
+    const datosCalculadora = {
+      entradas: { areaTecho: 0, materialTecho: '', precipitacionLocal: 0 },
+      configuracion: { factorConversion: 1, precioAgua: 0.05 },
+      resultados: {}
+    };
+
+    function calcularResultados() {
+      const A = parseFloat(document.getElementById("areaTecho").value) || 0;
+      const P = parseFloat(document.getElementById("precipitacionLocal").value) || 0;
+      const material = document.getElementById("materialTecho").value;
+      const C = coeficientesMateriales[material]?.coeficiente || 0;
+      const costo = parseFloat(document.getElementById("costoSistema").value) || 0;
+      const ahorroMensual = parseFloat(document.getElementById("ahorroMensual").value) || 0;
+
+      if (A <= 0 || P <= 0 || C === 0 || costo <= 0 || ahorroMensual <= 0) {
+        alert("Por favor ingresa todos los valores válidos (mayores que 0).");
+        return;
+      }
+
+      const litros = A * P * C;
+      const ahorroAnual = litros * datosCalculadora.configuracion.precioAgua;
+      const ROI = costo / ahorroMensual;
+      const tinacos = Math.floor(litros / 1100);
+      const duchas = Math.floor(litros / 60);
+      const lavadoras = Math.floor(litros / 50);
+
+      datosCalculadora.resultados = { 
+        litros, 
+        ahorroAnual, 
+        ROI, 
+        tinacos, 
+        duchas, 
+        lavadoras 
+      };
+      
+      datosCalculadora.entradas.areaTecho = A;
+      datosCalculadora.entradas.precipitacionLocal = P;
+      datosCalculadora.entradas.materialTecho = material;
+
+      localStorage.setItem('resultadoAgua2025', JSON.stringify(datosCalculadora.resultados));
+
+      actualizarInterfazInmediata();
+    }
+
+function actualizarInterfazInmediata() {
+    const r = datosCalculadora.resultados;
+    
+    if (!r || !r.litros) {
+        console.log("No hay resultados para mostrar");
+        return;
+    }
+
+    console.log("Actualizando interfaz con:", r);
+
+    const calcularBtn = document.querySelector('button[onclick="calcularResultados()"]');
+    calcularBtn.classList.add('calculate-pulse');
+    setTimeout(() => {
+        calcularBtn.classList.remove('calculate-pulse');
+    }, 500);
+
+    const elementosParaAnimacion = [
+        'litrosAnuales', 'equivalenteTinacos', 'equivalenteDuchas', 
+        'equivalenteLavadoras', 'ahorroEconomico', 'retornoInversion',
+        'litrosEtiqueta', 'ahorroEtiqueta'
+    ];
+
+    elementosParaAnimacion.forEach(id => {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+            elemento.classList.add('number-change');
+            setTimeout(() => {
+                elemento.classList.remove('number-change');
+            }, 600);
+        }
+    });
+
+    document.getElementById('litrosAnuales').textContent = r.litros.toFixed(1);
+    document.getElementById('equivalenteTinacos').textContent = r.tinacos;
+    document.getElementById('equivalenteDuchas').textContent = r.duchas;
+    document.getElementById('equivalenteLavadoras').textContent = r.lavadoras;
+    document.getElementById('ahorroEconomico').textContent = r.ahorroAnual.toFixed(2);
+    document.getElementById('retornoInversion').textContent = r.ROI.toFixed(1);
+    
+    document.getElementById('litrosEtiqueta').textContent = r.litros.toFixed(1);
+    document.getElementById('ahorroEtiqueta').textContent = r.ahorroAnual.toFixed(2);
+
+    const barraLitros = document.getElementById("barraLitros");
+    const barraAhorro = document.getElementById("barraAhorro");
+
+    const anchoLitros = Math.min((r.litros / 20000) * 100, 100);
+    const anchoAhorro = Math.min((r.ahorroAnual / 10000) * 100, 100);
+
+    console.log("Anchos calculados - Litros:", anchoLitros, "Ahorro:", anchoAhorro);
+
+    setTimeout(() => {
+        barraLitros.style.width = anchoLitros + '%';
+    }, 300);
+    
+    setTimeout(() => {
+        barraAhorro.style.width = anchoAhorro + '%';
+    }, 500);
+
+    const compartirSection = document.querySelector('.compartir-container');
+    compartirSection.style.animation = 'fadeInUp 0.8s ease-out 0.8s both';
+}
+    function cargarDatosGuardados() {
+      const guardado = localStorage.getItem('resultadoAgua2025');
+      if (guardado) {
+        try {
+          datosCalculadora.resultados = JSON.parse(guardado);
+          console.log("Datos cargados:", datosCalculadora.resultados);
+          
+          const r = datosCalculadora.resultados;
+          
+          document.getElementById('litrosAnuales').textContent = r.litros.toFixed(1);
+          document.getElementById('equivalenteTinacos').textContent = r.tinacos;
+          document.getElementById('equivalenteDuchas').textContent = r.duchas;
+          document.getElementById('equivalenteLavadoras').textContent = r.lavadoras;
+          document.getElementById('ahorroEconomico').textContent = r.ahorroAnual.toFixed(2);
+          document.getElementById('retornoInversion').textContent = r.ROI.toFixed(1);
+          document.getElementById('litrosEtiqueta').textContent = r.litros.toFixed(1);
+          document.getElementById('ahorroEtiqueta').textContent = r.ahorroAnual.toFixed(2);
+
+          const barraLitros = document.getElementById("barraLitros");
+          const barraAhorro = document.getElementById("barraAhorro");
+
+          const anchoLitros = Math.min((r.litros / 20000) * 100, 100);
+          const anchoAhorro = Math.min((r.ahorroAnual / 10000) * 100, 100);
+
+          barraLitros.style.transition = 'none';
+          barraAhorro.style.transition = 'none';
+          barraLitros.style.width = anchoLitros + '%';
+          barraAhorro.style.width = anchoAhorro + '%';
+          
+        } catch (e) {
+          console.error("Error cargando datos guardados:", e);
+        }
+      }
+    }
+
+    window.addEventListener("load", () => {
+      cargarDatosGuardados();
+    });
+
+    function generarTextoCompartir() {
+      const r = datosCalculadora.resultados;
+      if (!r || !r.litros) {
+        alert("Primero calcula tus resultados 💧");
+        return null;
+      }
+      return `¡He captado ${r.litros.toFixed(1)} litros de agua de lluvia! 🌧️ 
+Equivale a ${r.tinacos} tinacos llenos 💧 
+y ahorro $${r.ahorroAnual.toFixed(2)} al año 💸 
+#CaptaciónDeAgua #ZinacantepecSustentable`;
+    }
+
+    document.getElementById("btnWhatsApp").addEventListener("click", () => {
+      const texto = generarTextoCompartir();
+      if (texto) {
+        const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+        window.open(url, "_blank");
+      }
+    });
+
+    document.getElementById("btnFacebook").addEventListener("click", () => {
+      const texto = generarTextoCompartir();
+      if (texto) {
+        const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(texto)}`;
+        window.open(url, "_blank");
+      }
+    });
+
+    document.getElementById("btnInstagram").addEventListener("click", () => {
+      alert("Instagram no permite compartir texto directamente 💡. Copia el mensaje para pegarlo en tu historia o publicación.");
+      const texto = generarTextoCompartir();
+      if (texto) {
+        navigator.clipboard.writeText(texto).then(() => {
+          alert("✅ Mensaje copiado al portapapeles");
+        });
+      }
+    });
+
+    document.getElementById("areaTecho").addEventListener("input", function() {
+      datosCalculadora.entradas.areaTecho = parseFloat(this.value) || 0;
+    });
+
+    document.getElementById("precipitacionLocal").addEventListener("input", function() {
+      datosCalculadora.entradas.precipitacionLocal = parseFloat(this.value) || 0;
+    });
+
+    document.getElementById("materialTecho").addEventListener("change", function() {
+      datosCalculadora.entradas.materialTecho = this.value;
+    });
+</script>

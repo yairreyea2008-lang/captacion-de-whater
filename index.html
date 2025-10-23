@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Captación de Agua Zinacantepec</title>
+  <meta name="description" content="Proyecto de captación de agua de lluvia en Zinacantepec para promover la sostenibilidad.">
+  <meta name="keywords" content="Zinacantepec, agua, captación, sostenibilidad, lluvia, ecología">
+  <meta name="author" content="Proyecto Captación de Agua">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#20B2AA">
+  <link rel="stylesheet" href="estilos.css/estilos.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-top">
+      <h1>Captación de Agua Zinacantepec</h1>
+
+      <div class="hamburguesa" id="hamburguesa">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <nav id="menu">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="calculadora.html">Calculadora</a></li>
+        <li><a href="problema.html">problema</a></li>
+        <li><a href="soluciones.html">Soluciones</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="bienvenida">
+    <h2>Bienvenido</h2>
+    <p>Este sitio muestra los esfuerzos de captación de agua de lluvia en Zinacantepec para promover la sostenibilidad y el cuidado del medio ambiente.</p>
+  </section>
+
+  <main>
+    <article>
+      <h3>Precipitación Anual Promedio</h3>
+      <p>En Zinacantepec, la precipitación promedio anual puede variar. En 2017 se registraron <strong>989.0 mm</strong> de acumulación total y un promedio de <strong>89.9 mm</strong> mensuales.</p>
+      <p>Fuente: <a href="https://ieecc.edomex.gob.mx/sites/ieecc.edomex.gob.mx/files/files/Pol%C3%ADticas%20P%C3%BAblicas/1_Diagn%C3%B3sticos%20Hidroclim%C3%A1ticos/Zinacantepec.pdf" target="_blank">Informe Hidroclimático Zinacantepec</a></p>
+    </article>
+
+    <article>
+      <h3>Colonias con Escasez de Agua</h3>
+      <ul>
+        <li>San Cristóbal Tecolitl</li>
+        <li>San Matías Transfiguración</li>
+        <li>Barrio El Calvario</li>
+        <li>Barrio de San Miguel</li>
+        <li>Cabecera Municipal</li>
+        <li>La Loma I y La Loma II</li>
+      </ul>
+    </article>
+
+    <article>
+      <h3>Causas de la Escasez</h3>
+      <p><strong>Problemas de infraestructura:</strong> fallas en los pozos y necesidad de nuevas tuberías.</p>
+      <p><strong>Problemas eléctricos:</strong> apagones que detienen los pozos.</p>
+      <p><strong>Limitado servicio de pipas:</strong> falta de unidades funcionales para atender la demanda.</p>
+    </article>
+
+    <article class="info-expandible">
+      <h3>Solución Propuesta</h3>
+      <div class="contenido-principal">
+        <p class="texto-base">
+          El sistema de captación de agua de lluvia puede ser una alternativa viable para las comunidades con escasez hídrica.  
+          <span class="puntos-suspensivos">...</span>
+        </p>
+        <div class="contenido-extra">
+          <p>Consiste en recolectar el agua que cae sobre los techos mediante canaletas, filtrarla y almacenarla en tanques o cisternas.</p>
+          <p>Este recurso puede utilizarse para actividades domésticas, riego o incluso tratamiento para consumo humano.</p>
+          <p>Además, fomenta la educación ambiental y reduce la dependencia de fuentes tradicionales de abastecimiento.</p>
+          <p>Los costos iniciales se recuperan con el ahorro de agua potable en pocos meses.</p>
+        </div>
+      </div>
+      <button class="btn-vermas">Ver más</button>
+    </article>
+
+    <section class="preguntas-frecuentes">
+      <h2>Preguntas Frecuentes de la Comunidad</h2>
+      <p>Resolvemos las dudas más comunes sobre captación de agua de lluvia</p>
+      
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-pregunta">
+            <span class="faq-icon">💧</span>
+            <h3>¿Qué es exactamente la captación de agua de lluvia?</h3>
+            <button class="faq-btn">+</button>
+          </div>
+          <div class="faq-respuesta">
+            <p>La captación de agua de lluvia es un sistema que recolecta, almacena y aprovecha el agua proveniente de las precipitaciones. Se compone de:</p>
+            <ul>
+              <li><strong>Superficie de captación:</strong> Generalmente el techo de la vivienda</li>
+              <li><strong>Canaletas:</strong> Conductos que dirigen el agua hacia el almacenamiento</li>
+              <li><strong>Sistema de filtración:</strong> Elimina hojas, tierra y otros contaminantes</li>
+              <li><strong>Almacenamiento:</strong> Cisternas o tanques para guardar el agua</li>
+              <li><strong>Sistema de distribución:</strong> Para usar el agua en diferentes actividades</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-pregunta">
+            <span class="faq-icon">💰</span>
+            <h3>¿Cuánto cuesta instalar un sistema de captación?</h3>
+            <button class="faq-btn">+</button>
+          </div>
+          <div class="faq-respuesta">
+            <p>El costo varía según la capacidad y complejidad del sistema:</p>
+            <div class="costos-grid">
+              <div class="costo-item">
+                <h4>Sistema Básico</h4>
+                <p class="precio">$2,000 - $5,000 MXN</p>
+                <p>Para una casa pequeña, capacidad de 1,000 litros</p>
+              </div>
+              <div class="costo-item">
+                <h4>Sistema Intermedio</h4>
+                <p class="precio">$8,000 - $15,000 MXN</p>
+                <p>Para familia media, capacidad de 2,500 litros</p>
+              </div>
+              <div class="costo-item">
+                <h4>Sistema Completo</h4>
+                <p class="precio">$20,000+ MXN</p>
+                <p>Incluye filtros avanzados y sistema de distribución</p>
+              </div>
+            </div>
+            <p class="nota-importante">💡 <strong>Nota:</strong> Muchos sistemas se pagan solos en 1-2 años con el ahorro en agua potable.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-pregunta">
+            <span class="faq-icon">🏠</span>
+            <h3>¿Puedo instalar un sistema si vivo en departamento?</h3>
+            <button class="faq-btn">+</button>
+          </div>
+          <div class="faq-respuesta">
+            <div class="solucion-departamento">
+              <div class="opcion">
+                <h4>✅ Opción para Azotea Compartida</h4>
+                <p>Si el edificio tiene azotea accesible, se puede instalar un sistema comunitario que beneficie a todos los residentes.</p>
+              </div>
+              <div class="opcion">
+                <h4>✅ Sistema de Balcón</h4>
+                <p>Existen sistemas compactos diseñados específicamente para balcones con capacidad de 100-500 litros.</p>
+              </div>
+              <div class="opcion">
+                <h4>✅ Captación en Áreas Comunes</h4>
+                <p>Implementar sistemas en techos de estacionamientos o áreas comunes del edificio.</p>
+              </div>
+            </div>
+            <p class="tip-importante"><strong>Consejo:</strong> Organízate con tus vecinos para una solución comunitaria más efectiva.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-pregunta">
+            <span class="faq-icon">🛠️</span>
+            <h3>¿Qué mantenimiento requiere el sistema?</h3>
+            <button class="faq-btn">+</button>
+          </div>
+          <div class="faq-respuesta">
+            <div class="mantenimiento-lista">
+              <div class="tarea">
+                <h4>Limpieza de Canaletas</h4>
+                <p><strong>Frecuencia:</strong> Cada 3-6 meses</p>
+                <p>Retirar hojas, tierra y obstrucciones</p>
+              </div>
+              <div class="tarea">
+                <h4>Limpieza de Filtros</h4>
+                <p><strong>Frecuencia:</strong> Cada 1-2 meses en época de lluvias</p>
+                <p>Lavar o reemplazar según el tipo de filtro</p>
+              </div>
+              <div class="tarea">
+                <h4>Limpieza del Tanque</h4>
+                <p><strong>Frecuencia:</strong> Anualmente</p>
+                <p>Vaciar, limpiar y desinfectar el interior</p>
+              </div>
+              <div class="tarea">
+                <h4>Revisión General</h4>
+                <p><strong>Frecuencia:</strong> Cada 6 meses</p>
+                <p>Verificar fugas, estado de tuberías y bombas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-pregunta">
+            <span class="faq-icon">🌧️</span>
+            <h3>¿Cuánta agua puedo captar realmente en Zinacantepec?</h3>
+            <button class="faq-btn">+</button>
+          </div>
+          <div class="faq-respuesta">
+            <div class="calculadora-agua">
+              <p>En Zinacantepec, con una precipitación promedio de <strong>989 mm anuales</strong>, puedes calcular tu potencial de captación:</p>
+              
+              <div class="formula">
+                <p><strong>Fórmula:</strong> Área de techo (m²) × Precipitación (mm) × 0.8 = Litros captables</p>
+                <p class="nota-formula">* El 0.8 representa un 80% de eficiencia por pérdidas y filtrado</p>
+              </div>
+              
+              <div class="ejemplos-captacion">
+                <div class="ejemplo">
+                  <h4>🏠 Casa pequeña (50 m² de techo)</h4>
+                  <p>50 × 989 × 0.8 = <strong>39,560 litros anuales</strong></p>
+                  <p>¡Suficiente para 4-5 meses de uso doméstico!</p>
+                </div>
+                <div class="ejemplo">
+                  <h4>🏡 Casa mediana (100 m² de techo)</h4>
+                  <p>100 × 989 × 0.8 = <strong>79,120 litros anuales</strong></p>
+                  <p>¡Aproximadamente 8-9 meses de consumo familiar!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-pregunta">
+            <span class="faq-icon">🚰</span>
+            <h3>¿Para qué usos puedo utilizar el agua de lluvia?</h3>
+            <button class="faq-btn">+</button>
+          </div>
+          <div class="faq-respuesta">
+            <div class="usos-agua">
+              <div class="uso-categoria">
+                <h4>💚 Usos Directos (sin tratamiento)</h4>
+                <ul>
+                  <li>Riego de jardines y plantas</li>
+                  <li>Lavado de autos y patios</li>
+                  <li>Limpieza general de exteriores</li>
+                  <li>Llenado de cisternas de inodoro</li>
+                </ul>
+              </div>
+              <div class="uso-categoria">
+                <h4>🔬 Con Filtración Básica</h4>
+                <ul>
+                  <li>Lavado de ropa</li>
+                  <li>Ducha y aseo personal</li>
+                  <li>Limpieza de interiores</li>
+                </ul>
+              </div>
+              <div class="uso-categoria">
+                <h4>💧 Con Tratamiento Avanzado</h4>
+                <ul>
+                  <li>Cocina y preparación de alimentos</li>
+                  <li>Consumo humano directo</li>
+                </ul>
+              </div>
+            </div>
+            <p class="advertencia">⚠️ <strong>Importante:</strong> Para consumo humano, el agua debe pasar por un proceso de purificación certificado.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-pregunta">
+            <span class="faq-icon">🦟</span>
+            <h3>¿El agua estancada atrae mosquitos y plagas?</h3>
+            <button class="faq-btn">+</button>
+          </div>
+          <div class="faq-respuesta">
+            <div class="prevencion-plagas">
+              <h4>Medidas para prevenir plagas:</h4>
+              
+              <div class="medida">
+                <h5>✅ Tanques Herméticos</h5>
+                <p>Usar cisternas completamente cerradas con tapas selladas.</p>
+              </div>
+              
+              <div class="medida">
+                <h5>✅ Mallas Antimosquitos</h5>
+                <p>Instalar mallas finas en todas las entradas de aire.</p>
+              </div>
+              
+              <div class="medida">
+                <h5>✅ Mantenimiento Regular</h5>
+                <p>La limpieza periódica evita la proliferación de larvas.</p>
+              </div>
+              
+              <div class="medida">
+                <h5>✅ Diseño Correcto</h5>
+                <p>Sistemas bien diseñados no permiten el acceso de insectos.</p>
+              </div>
+              
+              <div class="consejo-destacado">
+                <p>💡 <strong>Consejo profesional:</strong> Un sistema bien mantenido NO representa riesgo de plagas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-pregunta">
+            <span class="faq-icon">📋</span>
+            <h3>¿Necesito permisos especiales para instalar el sistema?</h3>
+            <button class="faq-btn">+</button>
+          </div>
+          <div class="faq-respuesta">
+            <div class="requisitos-permisos">
+              <div class="permiso-nivel">
+                <h4>🏠 Para Vivienda Particular</h4>
+                <p class="estado-permiso">✅ <strong>No se requieren permisos especiales</strong></p>
+                <p>La captación de agua de lluvia para uso doméstico está considerada como una práctica de aprovechamiento sustentable y no requiere trámites especiales.</p>
+              </div>
+              
+              <div class="permiso-nivel">
+                <h4>🏢 Para Uso Comercial o Industrial</h4>
+                <p class="estado-permiso">📝 <strong>Consulta requerida</strong></p>
+                <p>Para grandes volúmenes o uso comercial, se recomienda consultar con:</p>
+                <ul>
+                  <li>Comisión Nacional del Agua (CONAGUA)</li>
+                  <li>Dirección local de ecología municipal</li>
+                </ul>
+              </div>
+              
+              <div class="recomendacion-final">
+                <p>🌟 <strong>Beneficio adicional:</strong> Algunos municipios ofrecen descuentos en el predial por implementar sistemas ecológicos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <article>
+      <h3>Entidades Relacionadas</h3>
+      <ul>
+        <li>OPDAPAS Zinacantepec</li>
+        <li>Comisión del Agua del Estado de México (CAEM)</li>
+        <li>Comisión Nacional del Agua (CONAGUA)</li>
+        <li>Empresas privadas como Coca-Cola México</li>
+      </ul>
+      <p>Más información: <a href="https://opdapas.zinacantepec.gob.mx/index.php" target="_blank">OPDAPAS Zinacantepec</a></p>
+    </article>
+
+    <article>
+      <h3>El Problema</h3>
+      <p>La escasez de agua potable afecta a gran parte del municipio de Zinacantepec. Más de la mitad de su población enfrenta dificultades para acceder al recurso, por lo que este proyecto busca promover el uso eficiente y responsable del agua mediante sistemas de captación pluvial.</p>
+    </article>
+  </main>
+
+  <section class="mapa-zinacantepec">
+    <h3>Mapa Interactivo de Zinacantepec</h3>
+    <p>Explora las zonas con mayor escasez de agua en el municipio. Haz clic en los íconos 💧 para más información.</p>
+    <div id="mapa-interactivo"></div>
+  </section>
+
+  <section class="registro-link">
+    <a href="registro.html" class="btn-registro">💧 Comparte tu sugerencia</a>
+  </section>
+
+  <button id="btnSubir" title="Volver arriba" aria-label="Volver arriba">💧</button>
+
+  <footer>
+    <p>&copy; 2025 Captación de Agua Zinacantepec | Proyecto ecológico sustentable</p>
+  </footer>
+
+  <script>
+    window.addEventListener("scroll", () => {
+      const header = document.querySelector("header");
+      if (window.scrollY > 50) header.classList.add("scrolled");
+      else header.classList.remove("scrolled");
+    });
+
+    const elements = document.querySelectorAll("article, .mapa-zinacantepec, .registro-link");
+    function revealOnScroll() {
+      const windowHeight = window.innerHeight;
+      elements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) el.classList.add("visible");
+      });
+    }
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+
+    window.onscroll = function() {
+      const btn = document.getElementById("btnSubir");
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    };
+    document.getElementById("btnSubir").addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    const hamburguesa = document.getElementById('hamburguesa');
+    const menu = document.getElementById('menu');
+    hamburguesa.addEventListener('click', () => {
+      menu.classList.toggle('mostrar');
+      hamburguesa.classList.toggle('active');
+    });
+
+    const mapa = L.map('mapa-interactivo').setView([19.286, -99.735], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(mapa);
+
+    const iconoAgua = L.divIcon({
+      html: '💧',
+      className: 'icono-agua',
+      iconSize: [25, 25]
+    });
+
+    const zonas = [
+      { nombre: "San Cristóbal Tecolitl", coords: [19.278, -99.715] },
+      { nombre: "San Matías Transfiguración", coords: [19.273, -99.730] },
+      { nombre: "Barrio El Calvario", coords: [19.285, -99.735] },
+      { nombre: "Barrio de San Miguel", coords: [19.292, -99.740] },
+      { nombre: "Cabecera Municipal", coords: [19.285, -99.740] },
+      { nombre: "La Loma I y II", coords: [19.295, -99.750] }
+    ];
+
+    zonas.forEach(z => {
+      L.marker(z.coords, { icon: iconoAgua })
+        .addTo(mapa)
+        .bindPopup(`<b>${z.nombre}</b><br>Zona con escasez de agua 💧`);
+    });
+
+    // JavaScript para las preguntas frecuentes
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqButtons = document.querySelectorAll('.faq-btn');
+      
+      faqButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const faqItem = this.closest('.faq-item');
+          const respuesta = faqItem.querySelector('.faq-respuesta');
+          
+          // Cerrar otras preguntas abiertas
+          document.querySelectorAll('.faq-item.activo').forEach(item => {
+            if (item !== faqItem) {
+              item.classList.remove('activo');
+              item.querySelector('.faq-btn').textContent = '+';
+            }
+          });
+          
+          faqItem.classList.toggle('activo');
+          this.textContent = faqItem.classList.contains('activo') ? '−' : '+';
+        });
+      });
+      
+      const botones = document.querySelectorAll(".btn-vermas");
+      botones.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const contenedor = btn.closest(".info-expandible");
+          contenedor.classList.toggle("activo");
+          if (contenedor.classList.contains("activo")) {
+            btn.textContent = "Ver menos";
+          } else {
+            btn.textContent = "Ver más";
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

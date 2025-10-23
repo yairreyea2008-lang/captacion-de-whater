@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soluciones | Captación de Agua Zinacantepec</title>
+  <link rel="stylesheet" href="estilos.css/soluciones.css">
+</head>
+<body>
+  <header>
+    <div class="contenedor-header">
+      <h1>Captación de Agua Zinacantepec</h1>
+      <button class="hamburguesa" id="btnHamburguesa" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="navMenu">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="problema.html">Problemas</a></li>
+          <li><a href="soluciones.html" class="activo">Soluciones</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="bienvenida">
+    <h2>Soluciones y Buenas Prácticas</h2>
+    <p>Para mejorar la calidad de vida en Zinacantepec y garantizar el acceso al agua, se pueden implementar diversas soluciones sostenibles y comunitarias.</p>
+  </section>
+
+  <main>
+    <article>
+      <h3>Sistemas de Captación de Agua de Lluvia</h3>
+      <p>Instalar tinacos, cisternas y techos colectores de agua pluvial en hogares, escuelas y edificios públicos permite almacenar agua para uso doméstico y reducir la dependencia de pozos y pipas.</p>
+    </article>
+
+    <article>
+      <h3>Mantenimiento y Mejoramiento de Infraestructura</h3>
+      <ul>
+        <li>Reparar y modernizar pozos, tuberías y bombas para evitar fugas.</li>
+        <li>Instalar medidores de agua y sistemas de control para mejorar la distribución.</li>
+        <li>Planificar la expansión de la red de agua potable en zonas de alta demanda.</li>
+      </ul>
+    </article>
+
+    <article>
+      <h3>Ahorro y Uso Responsable del Agua</h3>
+      <p>Educar a la comunidad sobre hábitos de ahorro, como cerrar llaves mientras no se usan, reutilizar agua de lluvia para riego y evitar el desperdicio, contribuye a la sostenibilidad del recurso.</p>
+    </article>
+
+    <article>
+      <h3>Programas Comunitarios y Gobierno Local</h3>
+      <ul>
+        <li>Fomentar talleres de educación ambiental en escuelas y barrios.</li>
+        <li>Crear comités vecinales que supervisen el uso del agua y denuncien fugas.</li>
+        <li>Promover incentivos para quienes implementen sistemas de captación y ahorro.</li>
+      </ul>
+    </article>
+
+    <article>
+      <h3>Protección Ambiental y Reducción de Contaminación</h3>
+      <p>Implementar campañas de limpieza de ríos y barrancas, así como reducir el uso de químicos, contribuye a mejorar la calidad del agua y prevenir enfermedades.</p>
+    </article>
+
+    <article>
+      <h3>Preparación ante Fenómenos Naturales</h3>
+      <p>Diseñar planes de contingencia para sequías e inundaciones, incluyendo almacenamiento de agua de emergencia, drenajes eficientes y zonas de mitigación, reduce riesgos para la comunidad.</p>
+    </article>
+
+    <section class="registro-link">
+      <a href="registro.html" class="btn-registro">💧 Comparte tu sugerencia</a>
+    </section>
+  </main>
+
+  <button id="btnSubir" title="Volver arriba" aria-label="Volver arriba">💧</button>
+
+  <footer>
+    <p>&copy; 2025 Captación de Agua Zinacantepec | Proyecto ecológico sustentable</p>
+  </footer>
+
+  <script>
+    window.addEventListener("scroll", () => {
+      const header = document.querySelector("header");
+      header.classList.toggle("scrolled", window.scrollY > 50);
+    });
+
+    const elementos = document.querySelectorAll("article, .registro-link");
+    function revelar() {
+      const altura = window.innerHeight;
+      elementos.forEach(e => {
+        const top = e.getBoundingClientRect().top;
+        if (top < altura - 100) e.classList.add("visible");
+      });
+    }
+    window.addEventListener("scroll", revelar);
+    revelar();
+
+    const btnSubir = document.getElementById("btnSubir");
+    window.addEventListener("scroll", () => {
+      btnSubir.style.display = window.scrollY > 200 ? "block" : "none";
+    });
+    btnSubir.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    const btnHamburguesa = document.getElementById("btnHamburguesa");
+    const navMenu = document.getElementById("navMenu");
+    btnHamburguesa.addEventListener("click", () => {
+      btnHamburguesa.classList.toggle("activo");
+      navMenu.classList.toggle("mostrar");
+    });
+  </script>
+</body>
+</html>

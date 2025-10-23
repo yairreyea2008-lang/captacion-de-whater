@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Captación de Agua Zinacantepec</title>
+  <link rel="stylesheet" href="estilos.css/estilos.css">
+  <meta name="description" content="Formulario de registro para participar en proyectos de captación de agua en Zinacantepec.">
+  <meta name="keywords" content="registro, captación de agua, Zinacantepec, sostenibilidad, formulario">
+  <meta name="author" content="Captación de Agua Zinacantepec">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#20B2AA">
+</head>
+<body>
+  <header>
+    <div class="contenedor-header">
+      <h1>Captación de Agua Zinacantepec</h1>
+      <button class="hamburguesa" id="btnHamburguesa" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="navMenu">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="problema.html">Problemas</a></li>
+          <li><a href="soluciones.html" class="activo">Soluciones</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="bienvenida">
+    <h2>Únete a nuestros proyectos</h2>
+    <p>Completa este formulario para registrarte y participar en iniciativas de captación de agua de lluvia en Zinacantepec.</p>
+  </section>
+
+  <main>
+    <section class="registro">
+      <h3>Formulario de Registro</h3>
+      <form id="formRegistroCompleto">
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="(555) 123-4567" required>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" placeholder="Calle, colonia, municipio" required>
+
+        <label for="fechaNacimiento">Fecha de nacimiento:</label>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+
+        <label for="genero">Género:</label>
+        <select id="genero" name="genero" required>
+          <option value="" disabled selected>Selecciona tu género</option>
+          <option value="femenino">Femenino</option>
+          <option value="masculino">Masculino</option>
+          <option value="otro">Otro</option>
+          <option value="prefiero_no_decirlo">Prefiero no decirlo</option>
+        </select>
+
+        <label for="intereses">Intereses en proyectos:</label>
+        <select id="intereses" name="intereses" multiple size="4">
+          <option value="educacion_ambiental">Educación ambiental</option>
+          <option value="construccion_cisternas">Construcción de cisternas</option>
+          <option value="limpieza_rios">Limpieza de ríos y arroyos</option>
+          <option value="difusion_proyectos">Difusión de proyectos</option>
+        </select>
+
+        <label for="comentario">Comentario adicional (opcional):</label>
+        <textarea id="comentario" name="comentario" rows="4" placeholder="Escribe aquí tus comentarios..."></textarea>
+
+        <button type="submit" class="btn-registro">Enviar Registro</button>
+      </form>
+      <p id="mensajeConfirmacion" style="display:none; margin-top: 1rem; font-weight: bold; color: var(--color-verde-naturaleza);">
+        💧 ¡Gracias por registrarte! Pronto nos pondremos en contacto contigo.
+      </p>
+    </section>
+
+    <section class="registro-link">
+      <a href="index.html" class="btn-registro">💧 Volver a Inicio</a>
+    </section>
+  </main>
+
+  <button id="btnSubir" title="Volver arriba" aria-label="Volver arriba">💧</button>
+
+  <footer>
+    <p>&copy; 2025 Captación de Agua Zinacantepec | Proyecto ecológico sustentable</p>
+  </footer>
+
+  <script>
+    window.onscroll = function() {
+      const btn = document.getElementById("btnSubir");
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    };
+    document.getElementById("btnSubir").addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    const elements = document.querySelectorAll("article, .registro, .registro-link");
+    function revealOnScroll() {
+      const windowHeight = window.innerHeight;
+      elements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) el.classList.add("visible");
+      });
+    }
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+
+    document.getElementById("formRegistroCompleto").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("mensajeConfirmacion").style.display = "block";
+      this.reset();
+    });
+
+    const btnHamburguesa = document.getElementById("btnHamburguesa");
+    const navMenu = document.getElementById("navMenu");
+    btnHamburguesa.addEventListener("click", () => {
+      btnHamburguesa.classList.toggle("activo");
+      navMenu.classList.toggle("mostrar");
+    });
+
+  </script>
+</body>
+</html>
